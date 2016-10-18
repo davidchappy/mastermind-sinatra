@@ -1,0 +1,10 @@
+<div class="page-header end">
+  <% if won %>
+    <h1>You Won!</h1>
+  <% else %>
+    <h1>You Lost:(</h1>
+  <% end %>
+  <p>Secret code: <%= code %></p>
+
+  <p><a href="/restart">Play again?</a></p>
+</div>

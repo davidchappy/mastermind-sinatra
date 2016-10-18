@@ -1,0 +1,64 @@
+<div class="page-header">
+  <h1>Welcome to Mastermind!</h1>
+  <p>I'm thinking of 4 numbers from 1 to 6.<br/>Guess them in order in <%= turn_limit %> turns and you win!</p>
+</div>  <!-- / dashboard -->
+
+<div class="guesser">
+  <form action="/" method="POST">
+    <label for="guess">Type your guess</label>
+    <input type="number" name="guess" size="4" min="1111" max="6666" autofocus/>
+    <input type="submit" value="GUESS" class="submit"/>
+  </form>
+</div>
+
+<div class="how-to-play">
+  <h3>What the Pegs Mean</h3>
+  <ul>
+    <li class="clearfix"><span class="answer-peg peg-r"></span><p>Right number, right position!</p></li>
+    <li class="clearfix"><span class="answer-peg peg-w"></span><p>Right number, right position!</p></li>
+    <li class="clearfix"><span class="answer-peg peg-b"></span><p>Number isn't in the answer.</p></li>
+  </ul>
+</div>
+<a href="/restart" class="restart">Restart</a>
+
+<div class="board">
+  <div class="board-header">
+    <h2>Mastermind</h2>
+    <p>Turns left: <strong><%= turn_limit - turn_count %></strong></p>
+  </div>
+  <div class="board-body">
+    <% turn_count.times do |turn| %>
+      <div class="row clearfix">
+        <div class="left">
+          <table>
+            <tr class="guess-row" id="row-1">
+              <td class="guess-hole"><%= guesses[turn][0] %></td>
+              <td class="guess-hole"><%= guesses[turn][1] %></td>
+              <td class="guess-hole"><%= guesses[turn][2] %></td>
+              <td class="guess-hole"><%= guesses[turn][3] %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="right">
+          <table class="answers">
+            <tr class="answer-row">
+              <td class="answer-peg peg-<%= feedback[turn][0] %>"></td>
+              <td class="answer-peg peg-<%= feedback[turn][1] %>"></td>
+            </tr>
+            <tr class="answer-row">
+              <td class="answer-peg peg-<%= feedback[turn][2] %>"></td>
+              <td class="answer-peg peg-<%= feedback[turn][3] %>"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <% unless turn_count > 1 && (turn + 1) == turn_count %>
+        <hr class="divider">
+      <% end %>
+    <% end %>
+  </div>
+</div>  <!-- / board -->
+
+    
+ 
