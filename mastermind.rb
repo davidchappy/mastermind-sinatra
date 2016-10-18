@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader'
+require 'sinatra/reloader' if development?
 
 enable :sessions
 set :session_secret, 'mastermind_secret'
